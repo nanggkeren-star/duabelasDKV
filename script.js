@@ -6,6 +6,22 @@ const popupImg = document.getElementById("popup-img");
 const captionText = document.getElementById("caption");
 const closeBtn = document.querySelector(".close");
 
+// Tambahkan di paling atas script.js
+const menuToggle = document.getElementById('mobile-menu');
+const navMenu = document.getElementById('navMenu');
+
+if (menuToggle && navMenu) {
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    
+    // Animasi simple hamburger ke X
+    const bars = menuToggle.querySelectorAll('.bar');
+    bars[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
+    bars[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
+    bars[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
+  });
+}
+
 // THEME TOGGLE
 if (localStorage.getItem('theme') === 'dark') body.classList.add('dark');
 if (toggle) {

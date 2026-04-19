@@ -466,7 +466,7 @@ footer {
   min-width: 160px;
 }
 .gallery-item {
-  min-width: 200px;
+  min-width: 160px;
 }
 /* Membuat ukuran card sama */
 .member-card {
@@ -517,12 +517,222 @@ footer {
 }
 
 /* Tombol See All */
-.section-header .see-all {
+/* Container Header */
+.section-header {
+  position: relative;       /* Supaya tombol absolute bisa bersandar di sini */
+  display: flex;
+  justify-content: center;  /* INI KUNCINYA: Membuat judul (H2) ke tengah */
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+/* Judul H2 */
+.section-header h2 {
+  margin: 0;
+  text-align: center;
+  font-size: 24px;          /* Sesuaikan ukuran */
+  /* Jika judul terlalu panjang, beri sedikit margin agar tidak tertabrak tombol */
+  padding: 0 80px; 
+}
+
+/* Tombol See All (Tetap di Kanan) */
+.btn-see-all {
   position: absolute;
-  right: 0;                   /* Geser kanan → ubah angka untuk jarak */
+  right: 0;                 /* Menempel di kanan header */
   top: 50%;
-  transform: translateY(-50%);
-  font-size: 14px;
-  padding: 4px 10px;          /* Atur ukuran tombol */
-  margin-right: 0px;          /* Ini jarak dari kanan */
+  transform: translateY(-50%); /* Menjaga posisi vertikal tepat di tengah */
+  
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #0055ff, #0033aa);
+  color: white;
+  padding: 5px 5px 5px 18px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;          /* Sedikit dikecilkan agar proporsional */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 85, 255, 0.3);
+  white-space: nowrap;      /* Mencegah teks turun ke bawah */
+}
+
+/* Lingkaran Panah */
+.icon-circle {
+  width: 28px;
+  height: 28px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  transition: all 0.3s ease;
+}
+
+/* Efek Hover */
+.btn-see-all:hover {
+  /* Tetap sertakan translateY(-50%) agar posisi tidak berantakan saat hover */
+  transform: translateY(-55%); 
+  box-shadow: 0 6px 20px rgba(0, 85, 255, 0.5);
+}
+
+.btn-see-all:hover .icon-circle {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ================= RESPONSIVE MEDIA QUERIES ================= */
+
+/* Layar Tablet & HP (Max 768px) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  /* Hamburger Menu */
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 100;
+  }
+
+  .menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background: var(--text);
+    transition: 0.3s;
+  }
+
+  /* Sembunyikan Navigasi Asli */
+  .navbar nav {
+    position: fixed;
+    top: -100%; /* Sembunyi di atas */
+    left: 0;
+    flex-direction: column;
+    background: var(--card);
+    width: 100%;
+    text-align: center;
+    padding: 80px 0 30px;
+    transition: 0.5s ease;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  }
+
+  .navbar nav.active {
+    top: 0; /* Muncul saat aktif */
+  }
+
+  .navbar nav a {
+    margin: 15px 0;
+    font-size: 1.2rem;
+  }
+
+  /* Hero Section */
+  .hero-content h2 {
+    font-size: 1.8rem;
+    padding: 0 20px;
+  }
+
+  /* About Section */
+  .about-container {
+    gap: 20px;
+    padding: 40px 20px;
+  }
+
+  .about-image img {
+    max-width: 100%; /* Fix bug 500% tadi */
+  }
+
+  .about-text {
+    text-align: center;
+  }
+
+  .about-text h2 {
+    font-size: 2.2rem;
+  }
+
+  /* Timeline (Ubah jadi Vertikal di HP) */
+  .timeline-final {
+    flex-direction: column;
+    margin: 50px auto;
+    height: auto;
+    padding-left: 50px;
+  }
+
+  .timeline-line {
+    left: 20px;
+    width: 4px;
+    height: 100%;
+    transform: none;
+    top: 0;
+  }
+
+  .timeline-item {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 150px;
+  }
+
+  .timeline-dot {
+    left: 20px;
+    transform: translate(-50%, -50%);
+  }
+
+  .timeline-connector {
+    display: none; /* Hilangkan garis penghubung horizontal */
+  }
+
+  .timeline-img {
+    position: relative;
+    left: 40px;
+    transform: none;
+    width: 150px;
+    height: 150px;
+    top: 0 !important;
+  }
+
+  .year {
+    left: 60px !important;
+    top: -30px !important;
+    transform: none !important;
+  }
+
+  /* Contact Section */
+  .contact-container {
+    padding: 40px 20px;
+  }
+
+  .contact-image img {
+    width: 100%;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+
+  /* Section Header & Button See All */
+  .section-header h2 {
+    font-size: 20px;
+    padding: 0 60px;
+  }
+
+  .btn-see-all {
+    font-size: 11px;
+    padding: 4px 4px 4px 12px;
+  }
+}
+
+/* Layar Sangat Kecil (HP Mini - 480px) */
+@media (max-width: 480px) {
+  .members-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom di HP kecil */
+    gap: 15px;
+  }
+
+  .member-card {
+    min-width: unset;
+    width: 100%;
+  }
 }
