@@ -117,15 +117,122 @@ body.dark .switch-icon {
   margin-bottom: 10px;
 }
 
-/* ================= FOOTER ================= */
-footer {
-  background: var(--card);
-  text-align: center;
-  padding: 30px 20px;
-  font-size: 0.9rem;
+/* ================= NEW FOOTER STYLE (THEME RESPONSIVE) ================= */
+.main-footer {
+  background-color: var(--card);
   color: var(--text);
-  margin-top: 40px;
-  border-top: 1px solid rgba(0,0,0,0.05);
+  padding: 60px 0; /* Padding atas-bawah yang seimbang */
+  border-top: 1px solid rgba(128, 128, 128, 0.1);
+  font-family: 'Inter', sans-serif;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+.footer-line {
+  width: 90%;
+  height: 1px;
+  background-color: var(--text);
+  opacity: 0.1;
+  margin: 0 auto 40px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  /* KUNCI: Mengubah flex-start menjadi center agar seimbang */
+  justify-content: center; 
+  align-items: flex-start;
+  gap: 100px; /* Jarak antar kolom diperlebar agar terlihat lega */
+  padding: 0 5%;
+}
+
+/* Kolom Individual */
+.footer-col h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--text);
+}
+
+.footer-col p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+  opacity: 0.7;
+  margin: 0;
+}
+
+/* Kolom Logo & Copyright */
+.footer-logo {
+  height: 40px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+body.dark .footer-logo {
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
+}
+
+.copyright-text {
+  transition: opacity 0.3s ease;
+  cursor: default;
+  user-select: none;
+}
+
+/* Efek Redup Copyright */
+.copyright-text:hover {
+  opacity: 0.5;
+}
+
+/* Kolom Alamat */
+.maps-link {
+  text-decoration: none;
+  display: block;
+  transition: opacity 0.3s;
+  color: inherit; /* Supaya warna teks ikut var(--text) */
+}
+
+.maps-link:hover {
+  opacity: 0.6;
+}
+
+/* Kolom Sosial Media */
+.social-container {
+  display: flex;
+  gap: 15px;
+}
+
+.social-circle {
+  width: 45px; /* Ukuran lingkaran diperbesar sedikit agar ikon lega */
+  height: 45px;
+  background-color: var(--text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg);
+  text-decoration: none;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.social-circle:hover {
+  transform: translateY(-5px);
+  background-color: #007bff; /* Warna biru khas DKV saat hover */
+  color: #fff;
+}
+
+/* Responsive (Mobile) */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 40px;
+    text-align: left;
+  }
+  
+  .social-container {
+    justify-content: center;
+  }
 }
 
 /* ================= ANIMATION ================= */
