@@ -14,11 +14,13 @@ if (menuToggle && navMenu) {
   menuToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
     
-    // Animasi simple hamburger ke X
+    // Pastikan animasi hamburger tetap sinkron
     const bars = menuToggle.querySelectorAll('.bar');
-    bars[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
-    bars[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
-    bars[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
+    const isActive = navMenu.classList.contains('active');
+    
+    bars[0].style.transform = isActive ? 'rotate(45deg) translate(5px, 6px)' : 'none';
+    bars[1].style.opacity = isActive ? '0' : '1';
+    bars[2].style.transform = isActive ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
   });
 }
 

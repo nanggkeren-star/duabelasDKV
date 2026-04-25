@@ -338,38 +338,77 @@ body.dark .footer-logo {
 }
 
 /* BIAR TEXT RAPI SEMUA */
-.gallery-item p {
-  padding: 10px;
-  font-size: 14px;
-  min-height: 40px;
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3; /* Mengunci perbandingan lebar & tinggi (misal 4:3) */
+  object-fit: cover;   /* Foto akan memenuhi kotak tanpa menjadi gepeng */
+  object-position: center; /* Fokus foto tetap di tengah */
+  border-radius: 12px;
+  transition: transform 0.3s ease;
 }
 
 .popup {
-  display: none; /* WAJIB cuma ini */
+  display: none; /* Pastikan default-nya tersembunyi */
   position: fixed;
   inset: 0;
-  padding: 40px 20px;
-  background: rgba(0,0,0,0.85);
-  z-index: 999;
-  overflow-y: auto;
-
-  justify-content: center;
+  background: rgba(0,0,0,0.9);
+  z-index: 1000;
+  
+  /* Pengaturan posisi konten di tengah */
+  justify-content: center; 
   align-items: center;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .popup-content {
+  width: auto;
   max-width: 90%;
-  height: auto;
-  border-radius: 10px;
+  max-height: 75vh; /* Batasi tinggi gambar agar teks tidak terdorong keluar layar */
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  object-fit: contain; /* Memastikan gambar tidak terpotong */
+}
+
+/* Styling Caption agar di tengah bawah gambar */
+#caption {
+  margin-top: 20px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  width: 100%;
 }
 
 .close {
   position: absolute;
-  top: 20px;
+  top: 30px;
   right: 40px;
-  font-size: 35px;
+  font-size: 40px;
   color: #fff;
   cursor: pointer;
+  z-index: 1001;
+  transition: transform 0.3s;
+}
+
+.close:hover {
+  transform: scale(1.2);
+}
+
+/* Responsif untuk HP */
+@media (max-width: 768px) {
+  .popup-content {
+    max-width: 95%;
+    max-height: 60vh;
+  }
+  #caption {
+    font-size: 1rem;
+  }
+  .close {
+    right: 20px;
+    top: 20px;
+  }
 }
 
 /* ================= ABOUT ================= */
@@ -715,21 +754,26 @@ body.dark .footer-logo {
 
   /* Sembunyikan Navigasi Asli */
   .navbar nav {
-    position: fixed;
-    top: -100%; /* Sembunyi di atas */
-    left: 0;
-    flex-direction: column;
-    background: var(--card);
-    width: 100%;
-    text-align: center;
-    padding: 80px 0 30px;
-    transition: 0.5s ease;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Memenuhi layar agar rapi */
+  background: var(--card);
+  flex-direction: column;
+  justify-content: center; /* Menu di tengah secara vertikal */
+  align-items: center;
+  transition: transform 0.4s ease-in-out; /* Gunakan transform agar lebih mulus */
+  transform: translateY(-100%); /* Sembunyikan total di atas layar */
+  z-index: 99;
+  visibility: hidden; /* Tambahan agar tidak bisa diklik saat sembunyi */
+}
 
-  .navbar nav.active {
-    top: 0; /* Muncul saat aktif */
-  }
+/* Munculkan menu saat class active ditambahkan lewat JS */
+.navbar nav.active {
+  transform: translateY(0);
+  visibility: visible;
+}
 
   .navbar nav a {
     margin: 15px 0;
